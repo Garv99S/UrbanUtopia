@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Contact({ listing }) {
+  console.log("Listing prop:", listing);
   const [landlord, setLandlord] = useState(null);
   const [message, setMessage] = useState("");
   const onChange = (e) => {
@@ -14,13 +15,13 @@ export default function Contact({ listing }) {
         const res = await fetch(`/api/user/${listing.userRef}`);
         const data = await res.json();
         setLandlord(data);
-      } catch (error) {
+      } catch (error){
         console.log(error);
       }
     };
     fetchLandlord();
   }, [listing.userRef]);
-  
+
   return (
     <>
       {landlord && (
